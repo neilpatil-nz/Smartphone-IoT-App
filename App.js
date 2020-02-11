@@ -1,5 +1,8 @@
-import React, { useState, Component, Networking } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Linking, TouchableWithoutFeedback } from 'react-native';
+import React, { useState, Component, Networking} from 'react';
+import { StyleSheet, Text, View, Button, TextInput, Linking, Switch, TouchableWithoutFeedback } from 'react-native';
+import { Header } from 'react-native-elements';
+
+
 
 export default function App() {
   const [enteredURL, setURL] = useState(''); 
@@ -19,7 +22,7 @@ export default function App() {
     const commandHandler = 'http://' + enteredURL + commandUP;
     console.log(commandHandler);
     fetch(commandHandler, {
-      method: 'GET'
+      method: 'POST'
     });
   };
   const moveLEFT = () => {
@@ -50,21 +53,28 @@ export default function App() {
       method: 'GET'
     });   
   };
- 
+  
 
   return (
-   
-    <View style={{padding: 100}}>
-      <View>
+    
+    <View>
+     <Header
+      
+      centerComponent={{ text: 'Car Controller', style: { color: '#fff', fontSize: 20 } }}
+      
+      
+    />
+      <View style ={{ padding: 100 }}>
         <TextInput placeholder = "Enter IP Address"
         style ={{ 
-        borderColor:'grey', borderWidth:0.1, 
+        borderColor:'grey', borderWidth:0.1, marginBottom: 15, 
         borderRadius:4, height:40, fontSize: 20, padding: 5}}
         onChangeText = {HandlerURL}
         value = {enteredURL}
+        
         />
         <Button title='CONNECT' 
-        onPress={addURL}
+        onPress={addURL} 
         />
       </View>
       <View>
@@ -96,6 +106,15 @@ export default function App() {
           <View style={[styles.triangleDown]} />
         </TouchableWithoutFeedback>
       </View>
+      <View  
+      style ={{ position:'absolute',
+      marginTop: 700,
+      alignSelf: 'center'
+
+      }}>
+        
+        
+      </View>
     </View>
   );
 }
@@ -104,7 +123,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 0,
     height: 0,
-    marginTop: 60,
+    
     alignSelf: 'center',
     backgroundColor: 'transparent',
     borderStyle: 'solid',
@@ -117,9 +136,8 @@ const styles = StyleSheet.create({
   },
   triangleLeft: {
     position: 'absolute',
-    
-    marginTop: 130,
-    right: 150,
+    marginTop: 70,
+    left:100,
     width: 0,
     height: 0,
     alignSelf: 'center',
@@ -138,8 +156,8 @@ const styles = StyleSheet.create({
   triangleRight: {
     position: 'absolute',
     width: 0,
-    marginTop: 130,
-    left: 150,
+    marginTop: 70,
+    right: 100,
     height: 0,
     alignSelf: 'center',
     backgroundColor: 'transparent',
@@ -157,7 +175,7 @@ const styles = StyleSheet.create({
   triangleDown: {
     position: 'absolute',
     width: 0,
-    marginTop: 200,
+    marginTop: 150,
     
     height: 0,
     alignSelf: 'center',
@@ -168,7 +186,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 60,
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
-    borderBottomColor: '#cfd8dc',
+    borderBottomColor: 'black',
     transform: [
       {rotate: '180deg'}
     ],
